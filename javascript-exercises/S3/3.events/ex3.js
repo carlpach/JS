@@ -2,8 +2,8 @@
 
 let input$$ = document.querySelector("input");
 
-function handleInput() {
-    console.log(input$$.value);
+function handleInput(event) {
+    console.log(event.target.value);
     
 }
 
