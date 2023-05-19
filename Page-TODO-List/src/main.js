@@ -33,42 +33,46 @@ let arraLogTasks = [];
 
 butt$$.addEventListener("click", function() {
     let inptTextItem = inpt$$.value;
+    console.log(inptTextItem);
+    if (inptTextItem !== '') {
+        
+        // Create p of task
+        let pTask$$ = document.createElement("p");
+        pTask$$.textContent = inptTextItem;
+        arraLogTasks.push(inptTextItem);
 
-    // Create p of task
-    let pTask$$ = document.createElement("p");
-    pTask$$.textContent = inptTextItem;
-    arraLogTasks.push(inptTextItem);
+        // add task to history of tasks
+        let pHistory$$ = document.createElement("p")
+        pHistory$$.textContent = inptTextItem;
+        divHistory$$.appendChild(pHistory$$);
 
-    // add task to history of tasks
-    let pHistory$$ = document.createElement("p")
-    pHistory$$.textContent = inptTextItem;
-    divHistory$$.appendChild(pHistory$$);
+        // Create button delete
+        let deleteButt$$ = document.createElement("button");
+        deleteButt$$.classList.add("btn-delete");
+        deleteButt$$.textContent = "X";
 
-    // Create button delete
-    let deleteButt$$ = document.createElement("button");
-    deleteButt$$.classList.add("btn-delete");
-    deleteButt$$.textContent = "X";
+        // add p and button to li
+        let liTask$$ = document.createElement("li");
+        liTask$$.appendChild(pTask$$);
+        liTask$$.appendChild(deleteButt$$);
+        containerTasks$$.appendChild(liTask$$);
 
-    // add p and button to li
-    let liTask$$ = document.createElement("li");
-    liTask$$.appendChild(pTask$$);
-    liTask$$.appendChild(deleteButt$$);
-    containerTasks$$.appendChild(liTask$$);
+        // delete note
+        if (document.querySelector("li p") !== null) {
+            noteComplete$$.textContent = "Keep adding more!";
+        } 
+        
+        deleteButt$$.addEventListener("click", function () {
+            liTask$$.remove();
+            arraLogTasks.pop();
 
-    // delete note
-    if (document.querySelector("li p") !== null) {
-        noteComplete$$.textContent = "Keep adding more!";
-    } 
-    
-    deleteButt$$.addEventListener("click", function () {
-        liTask$$.remove();
-        arraLogTasks.pop();
+            if (document.querySelector("li") === null) {
+                noteComplete$$.textContent = "All tasks are completed";
+            }
 
-        if (document.querySelector("li") === null) {
-            noteComplete$$.textContent = "All tasks are completed";
-        }
-
-    });
+        });
+        
+    }
 
 console.log(arraLogTasks);
 
