@@ -25,7 +25,12 @@ const InsertPlanets = (planets) => {
         divImg$$.src = planet.image;
         divImg$$.style.height = "300px";
 
+        let titlePlanet$$ = document.createElement('h1');
+        titlePlanet$$.textContent = planet.name;
+
+
         divPlanets$$.appendChild(divImg$$);
+        divPlanets$$.appendChild(titlePlanet$$);
 
         let idPlanet = planet.id;
 
@@ -84,16 +89,14 @@ const FilterCharacters = (characterPlanet, inputbar$$Value) => {
 
 const handleOpenDescription = (divCharacter$$, charact) => {
 
-    let descripCharc$$ = document.createElement("p");
-    descripCharc$$.textContent = charact.description;
-    divCharacter$$.appendChild(descripCharc$$);
+    let paragraph$$ = document.querySelector("p");
+    if (paragraph$$) {
+        paragraph$$.remove();
+    } else {
+        let paragraph$$ = document.createElement("p");
+        paragraph$$.textContent = charact.description;
+        divCharacter$$.appendChild(paragraph$$);
 
-    descripCharc$$.addEventListener("click", () => HandleClickParagraph(descripCharc$$));
+    }
 
 }
-
-const HandleClickParagraph = (descripCharc$$) => {
-    //descripCharc$$.innerHTML = '';
-    console.log(descripCharc$$);
-    descripCharc$$.remove();
-};
